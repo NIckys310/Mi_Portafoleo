@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NICOLL. | Software & Design</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Background Elements -->
+    <div class="background-grid"></div>
+    <div class="red-glow"></div>
+    <div class="noise"></div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="#" class="logo" id="nav-logo">NICOLL<span>.</span></a>
+        <div class="nav-actions">
+            <button class="icon-button settings-toggle" title="Configuración y Personalización">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <button class="menu-button" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-title">NAVEGACIÓN</div>
+        <a href="#inicio" class="mobile-link">INICIO</a>
+        <a href="#sobre-mi" class="mobile-link">SOBRE MI</a>
+        <a href="#stack" class="mobile-link">STACK</a>
+        <a href="#proyectos" class="mobile-link">PROYECTOS</a>
+        <a href="#contacto" class="mobile-link">CONTACTO</a>
+    </div>
+
+    <!-- Main Bento Grid -->
+    <main class="bento-page" id="inicio">
+        
+        <!-- Column 1: Identity & Profile -->
+        <div class="identity-column">
+            
+            <div class="bento-card identity-card reveal">
+                <div class="card-topline">
+                    <span>01 / PERFIL</span>
+                    <div class="live-status">
+                        <i></i><span>DISPONIBLE</span>
+                    </div>
+                </div>
+                <div class="identity-photo">
+                    <img src="" alt="Nicoll Valentina" id="profile-img">
+                    <div class="profile-placeholder">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="photo-label" id="photo-label-name">NICOLL.</div>
+                </div>
+                <div class="identity-role">DISEÑO GRÁFICO × INGENIERÍA DE SOFTWARE</div>
+                <h1 id="main-title">DISEÑO.<br>CONSTRUYO.<br>TRANSFORMO.</h1>
+                <p class="identity-description" id="profile-desc">
+                    Diseño gráfico, UI/UX, motion y experiencias digitales combinadas con tecnología, programación e inteligencia artificial.
+                </p>
+                <div class="location-row">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>PASTO, NARIÑO, COLOMBIA</span>
+                </div>
+                <div class="identity-links">
+                    <a href="#proyectos">VER PROYECTOS <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contacto">CONTACTAR <i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <!-- Mini Stack Card -->
+            <div class="bento-card mini-stack-card reveal">
+                <div class="card-topline">
+                    <span>STACK PRINCIPAL</span>
+                    <span class="mono-label">TECH</span>
+                </div>
+                <div class="mini-stack">
+                    <span>PYTHON</span>
+                    <span>JAVASCRIPT</span>
+                    <span>TYPESCRIPT</span>
+                    <span>UI / UX</span>
+                    <span>FIGMA</span>
+                    <span>GIT</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Column 2: Content & Details -->
+        <div class="content-column">
+            
+            <!-- Top Profile Banner -->
+            <div class="bento-card profile-banner reveal">
+                <div class="banner-avatar">
+                    <span id="banner-initial">N</span>
+                </div>
+                <div class="banner-info">
+                    <span>HOLA, SOY</span>
+                    <strong id="banner-name">NICOLL.</strong>
+                </div>
+                <div class="banner-role">
+                    <span>CREATIVE</span>
+                    <span>DEVELOPER</span>
+                    <span>DESIGNER</span>
+                </div>
+                <a href="#contacto" class="banner-arrow">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+
+            <!-- About Section -->
+            <div class="bento-card about-section reveal" id="sobre-mi">
+                <div class="section-card-header">
+                    <div>
+                        <span class="card-number">01</span>
+                        <span class="card-label">SOBRE MI</span>
+                    </div>
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <div class="about-layout">
+                    <div class="about-title">
+                        <h2>CREATIVIDAD<br><span>+ CÓDIGO.</span></h2>
+                        <p>Una combinación entre pensamiento visual, tecnología y desarrollo de experiencias digitales.</p>
+                    </div>
+                    <div class="about-copy" id="about-copy-box">
+                        <p id="about-p1">Soy diseñadora gráfica y estudiante de Ingeniería de Software, con un perfil creativo y tecnológico que me permite abordar proyectos desde diferentes perspectivas.</p>
+                        <p id="about-p2">Trabajo con UI/UX, desarrollo web y herramientas digitales, buscando que cada solución sea visualmente atractiva, funcional y clara.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics / Activity Card -->
+            <div class="bento-card metrics-card reveal">
+                <div class="card-topline">
+                    <span>02 / ACTIVIDAD</span>
+                    <span class="mono-label">2026</span>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <strong id="projects-count">1</strong>
+                        <span>PROYECTOS</span>
+                    </div>
+                    <div class="metric">
+                        <strong>06</strong>
+                        <span>HABILIDADES</span>
+                    </div>
+                    <div class="metric">
+                        <strong>24/7</strong>
+                        <span>MODO CREATIVO</span>
+                    </div>
+                    <div class="metric">
+                        <strong><i>●</i></strong>
+                        <span>ACTIVA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section reveal" id="stack">
+                <div class="section-title-row">
+                    <div>
+                        <span>03 / EXPERTISE</span>
+                        <h2>HABILIDADES</h2>
+                    </div>
+                    <p>Herramientas y tecnologías que forman parte de mi proceso creativo y de desarrollo.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                        <div>
+                            <strong>PYTHON</strong>
+                            <span>SCRIPTS & BACKEND</span>
+                        </div>
+                        <b>01</b>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+                        <div>
+                            <strong>JAVASCRIPT</strong>
+                            <span>WEB INTERACTION</span>
+                        </div>
+                        <b>02</b>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+                        <div>
+                            <strong>TYPESCRIPT</strong>
+                            <span>APPLICATIONS</span>
+                        </div>
+                        <b>03</b>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-palette"></i></div>
+                        <div>
+                            <strong>UI / UX</strong>
+                            <span>FIGMA & DESIGN</span>
+                        </div>
+                        <b>04</b>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
+                        <div>
+                            <strong>GIT & GITHUB</strong>
+                            <span>VERSION CONTROL</span>
+                        </div>
+                        <b>05</b>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <div>
+                            <strong>MOTION</strong>
+                            <span>VISUAL EFFECTS</span>
+                        </div>
+                        <b>06</b>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section (Con datos técnicos funcionales al aire) -->
+            <div class="projects-section reveal" id="proyectos">
+                <div class="section-title-row">
+                    <div>
+                        <span>04 / PORTAFOLIO</span>
+                        <h2>PROYECTOS</h2>
+                    </div>
+                    <p>Desarrollos recientes enfocados en funcionalidad, diseño y código limpio.</p>
+                </div>
+                <div class="projects-grid" id="projects-container">
+                    <!-- Los proyectos se cargan dinámicamente aquí -->
+                </div>
+            </div>
+
+            <!-- GitHub Activity Heatmap Card -->
+            <div class="bento-card github-activity-card reveal">
+                <div class="section-card-header">
+                    <div>
+                        <span class="card-number">05</span>
+                        <span class="card-label">ACTIVIDAD DE GITHUB</span>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="github-link-target"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <div class="github-activity-top">
+                    <div>
+                        <h2>CÓDIGO <span>ACTIVO.</span></h2>
+                        <p>Historial de contribuciones, commits y desarrollo continuo en repositorios.</p>
+                    </div>
+                    <span class="activity-year">2026</span>
+                </div>
+                <div class="heatmap-window">
+                    <div class="window-bar">
+                        <div class="window-dots"><i></i><i></i><i></i></div>
+                        <span>github.com/contributions</span>
+                        <small>LIVE</small>
+                    </div>
+                    <div class="heatmap" id="heatmap-grid"></div>
+                    <div class="heatmap-legend">
+                        <span>Menos</span>
+                        <i class="level-0"></i>
+                        <i class="level-1"></i>
+                        <i class="level-2"></i>
+                        <i class="level-3"></i>
+                        <i class="level-4"></i>
+                        <span>Más</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section reveal" id="contacto">
+                <div class="section-title-row">
+                    <div>
+                        <span>06 / CONTACTO</span>
+                        <h2>HABLEMOS</h2>
+                    </div>
+                    <p>¿Tienes un proyecto en mente o quieres hablar de tecnología? Escríbeme.</p>
+                </div>
+                <div class="contact-grid">
+                    <a href="mailto:nickyandrade4891@gmail.com" class="contact-pill" id="email-link-target">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <span>CORREO</span>
+                            <strong id="email-text-target">nickyandrade4891@gmail.com</strong>
+                        </div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="https://wa.me/573000000000" target="_blank" class="contact-pill whatsapp-pill" id="whatsapp-link-target">
+                        <div class="contact-pill-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div>
+                            <span>WHATSAPP</span>
+                            <strong>Escríbeme al Chat</strong>
+                        </div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="contact-pill github-link-target">
+                        <div class="contact-pill-icon"><i class="fa-brands fa-github"></i></div>
+                        <div>
+                            <span>GITHUB</span>
+                            <strong>Ver Repositorios</strong>
+                        </div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                <div>NICOLL <span>//</span> 2026</div>
+                <span>DESIGN & CODE</span>
+                <span>COLOMBIA</span>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Settings Overlay (Panel de Control) -->
+    <div class="settings-overlay">
+        <div class="settings-panel">
+            <div class="settings-header">
+                <div>
+                    <span>PANEL DE CONTROL</span>
+                    <h2>Ajustes & Proyectos</h2>
+                </div>
+                <button class="icon-button close-settings"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="settings-content">
+                
+                <!-- Modo Oscuro / Claro -->
+                <div class="settings-section">
+                    <div class="settings-section-title">01 / APARIENCIA (TEMA)</div>
+                    <div class="theme-buttons-group">
+                        <button id="btn-dark-mode" class="theme-option-btn active">
+                            <i class="fa-solid fa-moon"></i> Modo Oscuro
+                        </button>
+                        <button id="btn-light-mode" class="theme-option-btn">
+                            <i class="fa-solid fa-sun"></i> Modo Claro
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Perfil Personalizado -->
+                <div class="settings-section">
+                    <div class="settings-section-title">02 / DATOS PERSONALES</div>
+                    <label>Tu Nombre / Marca <input type="text" id="setting-name" placeholder="NICOLL."></label>
+                    <label>Descripción Principal <input type="text" id="setting-desc" placeholder="Diseño gráfico, UI/UX..."></label>
+                    <label>Sobre Mí (Párrafo 1) <input type="text" id="setting-about1" placeholder="Soy diseñadora gráfica..."></label>
+                </div>
+
+                <!-- Enlaces Globales -->
+                <div class="settings-section">
+                    <div class="settings-section-title">03 / ENLACES GENERALES</div>
+                    <label>URL de GitHub <input type="text" id="setting-github" placeholder="https://github.com/tu-usuario"></label>
+                    <label>Correo de Contacto <input type="text" id="setting-email" placeholder="tu-correo@gmail.com"></label>
+                </div>
+
+                <!-- GESTIÓN DE PROYECTOS: AÑADIR Y ELIMINAR -->
+                <div class="settings-section">
+                    <div class="settings-section-title">04 / GESTIÓN DE PROYECTOS (AÑADIR / ELIMINAR)</div>
+                    
+                    <!-- Formulario para añadir -->
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
+                        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-red);">+ AÑADIR NUEVO PROYECTO</span>
+                        <label>Título del Proyecto <input type="text" id="new-proj-title" placeholder="Ej. Flores Amarillas"></label>
+                        <label>Descripción del Proyecto <input type="text" id="new-proj-desc" placeholder="Animación interactiva..."></label>
+                        <label>Tecnologías <input type="text" id="new-proj-tech" placeholder="HTML, CSS, JS"></label>
+                        <label>Link del Repositorio GitHub <input type="text" id="new-proj-link" placeholder="https://github.com/..."></label>
+                        <button class="add-project-button" id="add-project-btn">GUARDAR Y AÑADIR PROYECTO</button>
+                    </div>
+
+                    <!-- Lista para eliminar proyectos existentes -->
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; display: flex; flex-direction: column; gap: 10px;">
+                        <span style="font-family: var(--font-mono); font-size: 10px; color: #ff5f56;">🗑️ ELIMINAR PROYECTO EXISTENTE</span>
+                        <label>Selecciona el proyecto a eliminar:
+                            <select id="delete-proj-select" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 10px; border-radius: 8px; color: var(--text-primary); font-size: 12px; width: 100%; margin-top: 5px; outline: none;">
+                                <!-- Se llena dinámicamente con JS -->
+                            </select>
+                        </label>
+                        <button class="danger-button" id="delete-project-btn" style="width: 100%; margin-top: 5px;">ELIMINAR PROYECTO SELECCIONADO</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="settings-footer">
+                <p>Los cambios se aplican instantáneamente en tu navegador.</p>
+                <div>
+                    <button class="danger-button" id="reset-settings">Restaurar Todo</button>
+                    <button class="save-button close-settings" id="save-settings-btn">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
