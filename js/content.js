@@ -18,6 +18,8 @@ window.PORTFOLIO_CONTENT = {
     // Número con indicativo de país, solo dígitos. Ej: 573001234567
     whatsapp: "573138516777",
     github: "NIckys310",
+    // URL completa de tu perfil. Ej: https://www.linkedin.com/in/tu-usuario
+    linkedin: "https://www.linkedin.com/in/nicoll-undefined-43a350445",
     location: { es: "Pasto, Colombia", en: "Pasto, Colombia" },
     photo: "assets/media/foto.jpg",
     available: true,
@@ -143,6 +145,11 @@ window.PORTFOLIO_CONTENT = {
       },
       tech: ["Next.js 16", "TypeScript", "Expo", "FastAPI", "PostgreSQL", "pgvector", "Redis", "Turborepo", "Claude API"],
       platforms: ["Web", "PWA", "Android", "iOS"],
+      where: [
+        { icon: "ph-rocket-launch", text: { es: "En vivo en Vercel", en: "Live on Vercel" } },
+        { icon: "ph-github-logo", text: { es: "Código en GitHub (3 repos)", en: "Code on GitHub (3 repos)" } },
+        { icon: "ph-download-simple", text: { es: "Instalable como app (PWA)", en: "Installable as an app (PWA)" } }
+      ],
       media: { video: "assets/media/civia.webm", poster: "assets/media/civia-poster.jpg" },
       live: "https://civia-black.vercel.app",
       repos: [
@@ -189,6 +196,10 @@ window.PORTFOLIO_CONTENT = {
       },
       tech: ["JavaScript", "ml5.js", "Tailwind", "Chart.js", "Express", "TypeScript", "PostGIS"],
       platforms: ["Web"],
+      where: [
+        { icon: "ph-github-logo", text: { es: "Código abierto en GitHub", en: "Open source on GitHub" } },
+        { icon: "ph-browser", text: { es: "Corre en cualquier navegador", en: "Runs in any browser" } }
+      ],
       media: { video: "assets/media/wildlife.webm", poster: "assets/media/wildlife-poster.jpg" },
       live: "",
       repos: [{ label: "GitHub", url: "https://github.com/NIckys310/wildlife-guardian" }]
@@ -231,6 +242,11 @@ window.PORTFOLIO_CONTENT = {
       },
       tech: ["Kotlin", "Jetpack Compose", "Supabase", "WorkManager", "osmdroid", "ExoPlayer", "Claude API"],
       platforms: ["Android"],
+      where: [
+        { icon: "ph-android-logo", text: { es: "APK para Android 8 o superior", en: "APK for Android 8 or newer" } },
+        { icon: "ph-github-logo", text: { es: "Código en GitHub", en: "Code on GitHub" } },
+        { icon: "ph-cloud", text: { es: "Datos en la nube con Supabase", en: "Cloud data with Supabase" } }
+      ],
       media: { icon: "ph-hourglass-medium" },
       live: "",
       repos: [{ label: "GitHub", url: "https://github.com/NIckys310/timeCapsul" }]
@@ -273,6 +289,10 @@ window.PORTFOLIO_CONTENT = {
       },
       tech: ["Java 21", "Swing", "Java2D", "MVC"],
       platforms: ["Desktop"],
+      where: [
+        { icon: "ph-desktop", text: { es: "App de escritorio (Windows, macOS, Linux)", en: "Desktop app (Windows, macOS, Linux)" } },
+        { icon: "ph-lock-simple", text: { es: "Repositorio privado", en: "Private repository" } }
+      ],
       media: { images: ["assets/media/chronoloop-segundos.png", "assets/media/chronoloop-horas.png"], poster: "assets/media/chronoloop-segundos.png" },
       live: "",
       repos: []
@@ -315,6 +335,10 @@ window.PORTFOLIO_CONTENT = {
       },
       tech: ["Python", "Flask", "Claude API", "PyQt5", "Vosk", "Porcupine", "SQLite"],
       platforms: ["Web", "Desktop"],
+      where: [
+        { icon: "ph-windows-logo", text: { es: "Escritorio Windows con Python", en: "Windows desktop with Python" } },
+        { icon: "ph-browser", text: { es: "Interfaz web local con Flask", en: "Local web interface with Flask" } }
+      ],
       media: { poster: "assets/media/gideon-poster.jpg", images: ["assets/media/gideon-poster.jpg"] },
       live: "",
       repos: []

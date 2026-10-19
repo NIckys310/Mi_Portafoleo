@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nicoll Valentina | Diseño UI/UX y desarrollo de software</title>
     <meta name="description" content="Portafolio de Nicoll Valentina: diseñadora gráfica y estudiante de Ingeniería de Software. Diseño UI/UX, desarrollo web, apps móviles e integraciones con IA.">
-    <meta name="theme-color" content="#0a0a0b">
+    <meta name="theme-color" content="#2b060b">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nicoll Valentina | Diseño y desarrollo de software">
     <meta property="og:description" content="Diseño UI/UX, desarrollo web, apps móviles e integraciones con IA.">
@@ -73,7 +73,7 @@
 
     <main id="top">
         <!-- HERO -->
-        <section class="hero">
+        <section class="hero tone-hero">
             <div class="hero-copy">
                 <p class="eyebrow hero-status" data-anim="fade">
                     <span class="pulse" aria-hidden="true"></span>
@@ -106,7 +106,7 @@
         </section>
 
         <!-- Cifras reales -->
-        <section class="stats" aria-label="Cifras">
+        <section class="stats tone-red" aria-label="Cifras">
             <div class="stat" data-anim="up">
                 <strong data-count="github.total">0</strong>
                 <span data-i18n="stats.contrib">contribuciones en GitHub el último año</span>
@@ -126,7 +126,7 @@
         </section>
 
         <!-- PROYECTOS -->
-        <section class="section" id="proyectos">
+        <section class="section tone-black" id="proyectos">
             <div class="section-head">
                 <h2 class="section-title" data-anim="up" data-i18n="work.title">Proyectos seleccionados</h2>
                 <p class="section-lead" data-anim="up" style="--d:.08s" data-i18n="work.lead">Productos reales, de la idea al código. Abre cada uno para ver el problema, la solución y cómo está construido.</p>
@@ -135,12 +135,12 @@
         </section>
 
         <!-- Patrones (marquee único) -->
-        <section class="marquee-band" aria-label="Patrones y arquitectura">
+        <section class="marquee-band tone-crimson" aria-label="Patrones y arquitectura">
             <div class="marquee" id="marquee"></div>
         </section>
 
         <!-- SERVICIOS -->
-        <section class="section" id="servicios">
+        <section class="section tone-oxblood" id="servicios">
             <div class="section-head">
                 <h2 class="section-title" data-anim="up" data-i18n="services.title">Cómo puedo ayudarte</h2>
                 <p class="section-lead" data-anim="up" style="--d:.08s" data-i18n="services.lead">Desde el primer boceto hasta el despliegue. Puedes contratarme para una parte o para todo el producto.</p>
@@ -149,13 +149,13 @@
         </section>
 
         <!-- PROCESO -->
-        <section class="section process-section">
+        <section class="section process-section tone-wine">
             <h2 class="section-title" data-anim="up" data-i18n="process.title">Mi forma de trabajar</h2>
             <ol class="process" id="process"></ol>
         </section>
 
         <!-- SOBRE MÍ -->
-        <section class="section about" id="sobre-mi">
+        <section class="section about tone-black" id="sobre-mi">
             <div class="about-photo" data-anim="rise">
                 <img id="about-photo-img" alt="Nicoll Valentina" hidden>
                 <div class="about-photo-fallback" aria-hidden="true">
@@ -180,7 +180,7 @@
         </section>
 
         <!-- ACTIVIDAD GITHUB -->
-        <section class="section activity" id="actividad">
+        <section class="section activity tone-oxblood" id="actividad">
             <div class="activity-head">
                 <div>
                     <h2 class="section-title" data-anim="up" data-i18n="activity.title">Código, todos los días.</h2>
@@ -200,7 +200,7 @@
         </section>
 
         <!-- CONTACTO -->
-        <section class="contact" id="contacto">
+        <section class="contact tone-red" id="contacto">
             <div class="contact-glow" aria-hidden="true"></div>
             <h2 class="contact-title" data-anim="up" data-i18n="contact.title">¿Tienes un proyecto en mente?</h2>
             <p class="section-lead" data-anim="up" style="--d:.08s" data-i18n="contact.lead">Cuéntame qué necesitas. Respondo en menos de 24 horas.</p>
@@ -215,11 +215,12 @@
             <div class="contact-links" data-anim="up" style="--d:.24s">
                 <a id="contact-whatsapp" target="_blank" rel="noopener" hidden><i class="ph ph-whatsapp-logo"></i>WhatsApp</a>
                 <a id="contact-github" target="_blank" rel="noopener"><i class="ph ph-github-logo"></i>GitHub</a>
+                <a id="contact-linkedin" target="_blank" rel="noopener" hidden><i class="ph ph-linkedin-logo"></i>LinkedIn</a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer tone-black">
         <span>&copy; <span id="year"></span> <span data-bind="name">Nicoll Valentina</span></span>
         <span data-i18n="footer.made">Diseñado y programado por mí, sin plantillas.</span>
         <a href="#top" class="to-top" aria-label="Volver arriba"><i class="ph ph-arrow-up"></i></a>
@@ -293,6 +294,7 @@
                         <label class="field"><span class="field-label" data-i18n="panel.email">Correo</span><input name="email" type="email" required></label>
                         <label class="field"><span class="field-label">WhatsApp</span><input name="whatsapp" inputmode="numeric" placeholder="573001234567"><small data-i18n="panel.waHint">Con indicativo de país, solo números.</small></label>
                         <label class="field"><span class="field-label" data-i18n="panel.github">Usuario de GitHub</span><input name="github"></label>
+                        <label class="field"><span class="field-label">LinkedIn</span><input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/tu-usuario"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.headlineEs">Titular (español)</span><input name="headline_es"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.headlineEn">Titular (inglés)</span><input name="headline_en"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.photo">Foto (ruta o URL)</span><input name="photo" placeholder="assets/media/foto.jpg"></label>
@@ -309,6 +311,14 @@
                         <label class="field"><span class="field-label" data-i18n="panel.pTitle">Título</span><input name="title" required></label>
                         <label class="field"><span class="field-label" data-i18n="panel.pCategory">Categoría</span><input name="category" placeholder="App web"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.pSummary">Descripción</span><textarea name="summary" rows="3" required></textarea></label>
+                        <label class="field"><span class="field-label" data-i18n="panel.pPlatform">Hecho para</span>
+                            <select name="platform">
+                                <option value="Web" data-i18n="plat.web">Web</option>
+                                <option value="Android" data-i18n="plat.mobile">Móvil</option>
+                                <option value="Desktop" data-i18n="plat.desktop">Escritorio</option>
+                            </select>
+                        </label>
+                        <label class="field"><span class="field-label" data-i18n="panel.pWhere">Dónde está (separado por coma)</span><input name="where" placeholder="En vivo en Vercel, Código en GitHub"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.pTech">Tecnologías (separadas por coma)</span><input name="tech" placeholder="HTML, CSS, JavaScript"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.pLive">Link en vivo</span><input name="live" type="url" placeholder="https://"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.pRepo">Repositorio</span><input name="repo" type="url" placeholder="https://github.com/"></label>

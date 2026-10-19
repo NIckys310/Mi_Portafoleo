@@ -38,12 +38,15 @@
             'stats.projects': 'proyectos destacados', 'stats.platforms': 'plataformas: web, móvil, escritorio e IA',
             'work.title': 'Proyectos seleccionados',
             'work.lead': 'Productos reales, de la idea al código. Abre cada uno para ver el problema, la solución y cómo está construido.',
+            'work.platform': 'Hecho para', 'work.where': 'Dónde está',
+            'plat.web': 'Web', 'plat.mobile': 'Móvil', 'plat.desktop': 'Escritorio',
+            'case.where': 'Dónde encontrarlo', 'panel.pPlatform': 'Hecho para', 'panel.pWhere': 'Dónde está (separado por coma)',
             'work.open': 'Ver caso de estudio', 'work.live': 'En vivo', 'work.empty': 'Aún no hay proyectos. Añade uno desde el panel de control.',
             'services.title': 'Cómo puedo ayudarte',
             'services.lead': 'Desde el primer boceto hasta el despliegue. Puedes contratarme para una parte o para todo el producto.',
             'process.title': 'Mi forma de trabajar',
             'about.eyebrow': 'Sobre mí', 'about.title': 'Creatividad con criterio de ingeniería.',
-            'about.study': 'Ingeniería de Software', 'about.design': 'Diseño gráfico', 'about.langs': 'Español nativo, inglés',
+            'about.study': 'Ingeniería de Software, Universidad Cooperativa de Colombia', 'about.design': 'Diseño gráfico', 'about.langs': 'Español nativo, inglés',
             'activity.title': 'Código, todos los días.', 'activity.profile': 'Ver perfil', 'activity.less': 'Menos', 'activity.more': 'Más',
             'activity.lead': n => `${n.toLocaleString('es-CO')} contribuciones en los últimos 12 meses.`,
             'activity.live': 'Datos en vivo desde GitHub', 'activity.snapshot': d => `Datos de GitHub al ${d}`,
@@ -84,12 +87,15 @@
             'stats.projects': 'featured projects', 'stats.platforms': 'platforms: web, mobile, desktop and AI',
             'work.title': 'Selected work',
             'work.lead': 'Real products, from idea to code. Open each one to see the problem, the solution and how it is built.',
+            'work.platform': 'Built for', 'work.where': 'Where it lives',
+            'plat.web': 'Web', 'plat.mobile': 'Mobile', 'plat.desktop': 'Desktop',
+            'case.where': 'Where to find it', 'panel.pPlatform': 'Built for', 'panel.pWhere': 'Where it lives (comma separated)',
             'work.open': 'View case study', 'work.live': 'Live', 'work.empty': 'No projects yet. Add one from the control panel.',
             'services.title': 'How I can help',
             'services.lead': 'From the first sketch to deployment. Hire me for one piece or for the whole product.',
             'process.title': 'How I work',
             'about.eyebrow': 'About', 'about.title': 'Creativity with an engineering mindset.',
-            'about.study': 'Software Engineering', 'about.design': 'Graphic design', 'about.langs': 'Native Spanish, English',
+            'about.study': 'Software Engineering, Universidad Cooperativa de Colombia', 'about.design': 'Graphic design', 'about.langs': 'Native Spanish, English',
             'activity.title': 'Shipping code every day.', 'activity.profile': 'View profile', 'activity.less': 'Less', 'activity.more': 'More',
             'activity.lead': n => `${n.toLocaleString('en-US')} contributions in the last 12 months.`,
             'activity.live': 'Live data from GitHub', 'activity.snapshot': d => `GitHub data as of ${d}`,
@@ -203,8 +209,39 @@
         }
         const gh = `https://github.com/${encodeURIComponent(p.github || '')}`;
         $('#contact-github').href = gh;
+        const li = $('#contact-linkedin'), liUrl = safeUrl(p.linkedin);
+        li.hidden = !/^https?:/.test(liUrl);
+        if (!li.hidden) li.href = liUrl;
         $('#github-profile').href = gh;
         $('#year').textContent = new Date().getFullYear();
+    }
+
+    // Agrupa plataformas en Web / Móvil / Escritorio con su detalle
+    const PLATFORM_GROUPS = {
+        web: { icon: 'ph-globe', match: ['Web', 'PWA'] },
+        mobile: { icon: 'ph-device-mobile', match: ['Android', 'iOS'] },
+        desktop: { icon: 'ph-desktop', match: ['Desktop'] }
+    };
+    function platformGroups(p) {
+        const list = p.platforms || [];
+        return Object.entries(PLATFORM_GROUPS)
+            .map(([key, g]) => {
+                const hits = list.filter(x => g.match.includes(x));
+                if (!hits.length) return null;
+                const detail = key === 'mobile' ? hits.join(' / ') : (key === 'web' && hits.includes('PWA') ? 'PWA' : '');
+                return { key, icon: g.icon, label: i18n('plat.' + key) + (detail ? ` (${detail})` : '') };
+            })
+            .filter(Boolean);
+    }
+    function mainPlatform(p) {
+        const list = p.platforms || [];
+        return list.find(x => ['Web', 'Android', 'Desktop'].includes(x)) || (list.includes('iOS') ? 'Android' : 'Web');
+    }
+    function whereItems(p) {
+        return (p.where || []).map(w => typeof w === 'string' ? { icon: 'ph-map-pin', text: w } : w);
+    }
+    function chip(icon, text, cls = '') {
+        return `<span class="chip ${cls}"><i class="ph ${esc(icon)}"></i>${esc(text)}</span>`;
     }
 
     function mediaKind(src) { return /\.(webm|mp4|mov)(\?|$)/i.test(src || '') ? 'video' : 'image'; }
@@ -231,6 +268,16 @@
         return `<div class="work-media${m.video ? ' has-video' : ''}">${inner}${live}${play}</div>`;
     }
 
+    function specsHTML(p) {
+        const plats = platformGroups(p).map(g => chip(g.icon, g.label, 'chip-plat')).join('');
+        const where = whereItems(p).slice(0, p.featured ? 3 : 2).map(w => chip(w.icon, tr(w.text), 'chip-where')).join('');
+        if (!plats && !where) return '';
+        return `<dl class="work-specs">
+            ${plats ? `<div><dt>${esc(i18n('work.platform'))}</dt><dd>${plats}</dd></div>` : ''}
+            ${where ? `<div><dt>${esc(i18n('work.where'))}</dt><dd>${where}</dd></div>` : ''}
+        </dl>`;
+    }
+
     function renderProjects() {
         const grid = $('#work-grid');
         const list = content.projects || [];
@@ -239,7 +286,7 @@
             return;
         }
         grid.innerHTML = list.map((p, i) => {
-            const tech = (p.tech || []).slice(0, p.featured ? 6 : 4).map(t => `<span>${esc(t)}</span>`).join('');
+            const tech = (p.tech || []).slice(0, 4).map(t => `<span>${esc(t)}</span>`).join('');
             return `
             <button class="work-card${p.featured ? ' featured' : ''}" data-id="${esc(p.id)}" style="--d:${(i % 2) * 0.1}s">
                 ${cardMediaHTML(p)}
@@ -248,6 +295,7 @@
                     <h3 class="work-title">${esc(p.title)}</h3>
                     <p class="work-tagline">${esc(tr(p.tagline) || tr(p.summary))}</p>
                     ${p.featured ? `<p class="work-summary">${esc(tr(p.summary))}</p>` : ''}
+                    ${specsHTML(p)}
                     <div class="tags">${tech}</div>
                     <span class="work-open">${esc(i18n('work.open'))}<i class="ph ph-arrow-right"></i></span>
                 </div>
@@ -439,7 +487,7 @@
 
         const facts = [
             ['case.year', p.year],
-            ['case.platforms', (p.platforms || []).join(', ')],
+            ['case.platforms', platformGroups(p).map(g => g.label).join(', ')],
             ['case.status', tr(p.status)],
             ['case.stack', (p.tech || []).slice(0, 3).join(', ')]
         ].filter(f => f[1]);
@@ -465,6 +513,7 @@
                 </div>
                 ${facts.length ? `<dl class="case-facts">${facts.map(f => `<div><dt>${esc(i18n(f[0]))}</dt><dd>${esc(f[1])}</dd></div>`).join('')}</dl>` : ''}
                 ${blocks.length ? `<div class="case-cols">${blocks.map(b => `<div class="case-block"><h3><i class="ph ${b[1]}"></i>${esc(i18n(b[0]))}</h3><p>${esc(b[2])}</p></div>`).join('')}</div>` : ''}
+                ${whereItems(p).length ? `<div class="case-block"><h3><i class="ph ph-map-pin-area"></i>${esc(i18n('case.where'))}</h3><div class="chips">${whereItems(p).map(w => chip(w.icon, tr(w.text), 'chip-where')).join('')}</div></div>` : ''}
                 ${highlights ? `<div class="case-block"><h3><i class="ph ph-star"></i>${esc(i18n('case.highlights'))}</h3><ul class="case-list">${highlights}</ul></div>` : ''}
                 ${(p.tech || []).length ? `<div class="case-block"><h3><i class="ph ph-stack"></i>${esc(i18n('case.stack'))}</h3><div class="tags">${p.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
             </div>`;
@@ -642,6 +691,7 @@
         f.email.value = p.email || '';
         f.whatsapp.value = p.whatsapp || '';
         f.github.value = p.github || '';
+        f.linkedin.value = p.linkedin || '';
         f.headline_es.value = (p.headline && p.headline.es) || '';
         f.headline_en.value = (p.headline && p.headline.en) || '';
         f.photo.value = p.photo || '';
@@ -655,6 +705,7 @@
         p.email = f.email.value.trim() || p.email;
         p.whatsapp = f.whatsapp.value.replace(/\D/g, '');
         p.github = f.github.value.trim() || p.github;
+        p.linkedin = f.linkedin.value.trim();
         p.headline = { es: f.headline_es.value.trim() || p.headline.es, en: f.headline_en.value.trim() || p.headline.en };
         p.photo = f.photo.value.trim();
         persist();
@@ -696,6 +747,8 @@
             f.live.value = p.live || '';
             f.repo.value = (p.repos && p.repos[0] && p.repos[0].url) || '';
             f.media.value = m.video || m.poster || '';
+            f.platform.value = mainPlatform(p);
+            f.where.value = whereItems(p).map(w => tr(w.text)).join(', ');
             $('#project-form-title').textContent = i18n('panel.editProject');
             f.title.focus();
         }
@@ -712,12 +765,21 @@
         const f = projectForm.elements;
         const tech = f.tech.value.split(',').map(s => s.trim()).filter(Boolean);
         const mediaSrc = f.media.value.trim();
+        const whereList = f.where.value.split(',').map(x => x.trim()).filter(Boolean);
+        const toWhere = txt => {
+            const icon = /vercel|vivo|live|netlify/i.test(txt) ? 'ph-rocket-launch' : /github|código|code/i.test(txt) ? 'ph-github-logo'
+                : /apk|android|play/i.test(txt) ? 'ph-android-logo' : /escritorio|desktop|windows/i.test(txt) ? 'ph-desktop' : 'ph-map-pin';
+            return { icon, text: txt };
+        };
         const existing = content.projects.find(p => p.id === f.id.value);
         if (existing) {
             existing.title = f.title.value.trim();
             existing.category = setLocalized(existing.category, f.category.value.trim());
             existing.summary = setLocalized(existing.summary, f.summary.value.trim());
             existing.tech = tech;
+            if (f.platform.value !== mainPlatform(existing)) existing.platforms = [f.platform.value];
+            const oldWhere = whereItems(existing);
+            existing.where = whereList.map((txt, k) => oldWhere[k] && tr(oldWhere[k].text) === txt ? oldWhere[k] : toWhere(txt));
             existing.live = f.live.value.trim();
             const repo = f.repo.value.trim();
             existing.repos = repo ? [{ label: 'GitHub', url: repo }].concat((existing.repos || []).slice(1)) : (existing.repos || []).slice(1);
@@ -735,7 +797,8 @@
                 live: f.live.value.trim(),
                 repos: f.repo.value.trim() ? [{ label: 'GitHub', url: f.repo.value.trim() }] : [],
                 media: mediaSrc ? (mediaKind(mediaSrc) === 'video' ? { video: mediaSrc } : { poster: mediaSrc, images: [mediaSrc] }) : { icon: 'ph-cube' },
-                platforms: []
+                platforms: [f.platform.value],
+                where: whereList.map(toWhere)
             });
         }
         persist();
