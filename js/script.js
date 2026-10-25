@@ -889,11 +889,33 @@
         toast(i18n('panel.restored'));
     });
 
+    // Luz de fondo que sigue el cursor (con suavizado). En táctil se mueve sola.
+    function bindBackgroundFX() {
+        let tx = innerWidth / 2, ty = innerHeight * 0.3, x = tx, y = ty, t0 = performance.now();
+        if (finePointer) addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+        const tick = now => {
+            if (!reducedMotion()) {
+                if (!finePointer) {
+                    const t = (now - t0) / 1000;
+                    tx = innerWidth * (0.5 + 0.35 * Math.sin(t * 0.35));
+                    ty = innerHeight * (0.4 + 0.25 * Math.cos(t * 0.27));
+                }
+                x += (tx - x) * 0.08;
+                y += (ty - y) * 0.08;
+                root.style.setProperty('--mx', x.toFixed(1) + 'px');
+                root.style.setProperty('--my', y.toFixed(1) + 'px');
+            }
+            requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    }
+
     // ----------------------------------------------------
     // INICIO
     // ----------------------------------------------------
     renderAll();
     bindPointerFX();
+    bindBackgroundFX();
     bindActiveNav();
     renderActivityText();
     loadGithub();

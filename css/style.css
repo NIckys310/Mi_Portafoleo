@@ -982,3 +982,151 @@ body { background: var(--bg); }
 @media (prefers-reduced-motion: reduce) {
     .phone-shots img { transition: none; }
 }
+
+/* ==========================================================
+   FONDO UNIFORME: un solo degradado de vino tinto a negro.
+   Las secciones son transparentes y comparten los mismos tokens.
+   ========================================================== */
+:root {
+    --surface: rgba(255, 236, 240, 0.035);
+    --surface-2: rgba(255, 236, 240, 0.06);
+    --line: rgba(255, 228, 232, 0.10);
+    --line-strong: rgba(255, 228, 232, 0.20);
+    --text: #fbf4f5;
+    --muted: #c9a3aa;
+    --accent: #e0475c;
+    --btn-bg: #b8213d;
+    --btn-fg: #ffffff;
+    --btn-hover: #c92a47;
+    --mx: 50vw;
+    --my: 30vh;
+}
+html:not([data-theme="light"]) body {
+    background:
+        linear-gradient(180deg,
+            #4a0d1b 0%,
+            #3c0b17 14%,
+            #2e0912 32%,
+            #1f060c 52%,
+            #130509 72%,
+            #0c0708 88%,
+            #0a0a0b 100%);
+}
+[data-theme="light"] body {
+    background: linear-gradient(180deg, #f1d4d9 0%, #f6e3e6 30%, #faf0f1 65%, #fbf9f9 100%);
+}
+
+html[data-theme] [class*="tone-"] {
+    background: transparent;
+    --bg: inherit;
+    --surface: inherit;
+    --surface-2: inherit;
+    --line: inherit;
+    --line-strong: inherit;
+    --text: inherit;
+    --muted: inherit;
+    --accent: inherit;
+    --accent-soft: inherit;
+    --accent-line: inherit;
+    --btn-bg: inherit;
+    --btn-fg: inherit;
+    --btn-hover: inherit;
+}
+.marquee-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.marquee span::after { background: var(--accent); }
+.contact-glow { background: radial-gradient(closest-side, rgba(184, 33, 61, 0.28), transparent); }
+
+/* ==========================================================
+   LUCES DE FONDO: orbes que flotan, foco que sigue el cursor y
+   una cuadrícula técnica que se revela alrededor del puntero.
+   ========================================================== */
+.bg-fx { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.bg-orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55;
+    will-change: transform;
+}
+.bg-orb.o1 { width: 46vw; height: 46vw; left: -10vw; top: -12vw; background: radial-gradient(closest-side, rgba(184, 33, 61, 0.55), transparent); animation: orb1 26s ease-in-out infinite alternate; }
+.bg-orb.o2 { width: 38vw; height: 38vw; right: -8vw; top: 30vh; background: radial-gradient(closest-side, rgba(127, 23, 48, 0.6), transparent); animation: orb2 32s ease-in-out infinite alternate; }
+.bg-orb.o3 { width: 30vw; height: 30vw; left: 30vw; bottom: -14vw; background: radial-gradient(closest-side, rgba(101, 21, 40, 0.5), transparent); animation: orb3 38s ease-in-out infinite alternate; }
+@keyframes orb1 { to { transform: translate(18vw, 14vh) scale(1.15); } }
+@keyframes orb2 { to { transform: translate(-20vw, -10vh) scale(.9); } }
+@keyframes orb3 { to { transform: translate(-14vw, -18vh) scale(1.2); } }
+
+.bg-spot {
+    position: absolute; inset: 0;
+    background: radial-gradient(520px circle at var(--mx) var(--my), rgba(224, 71, 92, 0.16), transparent 65%);
+}
+.bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 228, 232, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 228, 232, 0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(300px circle at var(--mx) var(--my), #000, transparent 75%);
+    mask-image: radial-gradient(300px circle at var(--mx) var(--my), #000, transparent 75%);
+}
+/* Oscuridad en los bordes */
+.bg-fx::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(5, 2, 3, 0.55) 100%);
+}
+/* Las luces se apagan poco a poco al bajar, para terminar en negro */
+@supports (animation-timeline: scroll()) {
+    .bg-orb.o1 { animation: orb1 26s ease-in-out infinite alternate, dim 1s linear both; animation-timeline: auto, scroll(root); }
+    .bg-orb.o2 { animation: orb2 32s ease-in-out infinite alternate, dim 1s linear both; animation-timeline: auto, scroll(root); }
+    .bg-orb.o3 { animation: orb3 38s ease-in-out infinite alternate, dim 1s linear both; animation-timeline: auto, scroll(root); }
+    @keyframes dim { to { opacity: .12; } }
+}
+[data-theme="light"] .bg-orb { opacity: .22; }
+[data-theme="light"] .bg-spot { background: radial-gradient(520px circle at var(--mx) var(--my), rgba(184, 33, 61, 0.10), transparent 65%); }
+[data-theme="light"] .bg-grid {
+    background-image:
+        linear-gradient(rgba(76, 16, 32, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76, 16, 32, 0.07) 1px, transparent 1px);
+}
+[data-theme="light"] .bg-fx::after { display: none; }
+@media (prefers-reduced-motion: reduce) { .bg-orb { animation: none !important; } }
+.no-motion .bg-orb { animation: none !important; }
+
+/* ==========================================================
+   GITHUB: recuadro de datos en vivo estilo terminal (negro + verde)
+   ========================================================== */
+.heatmap-wrap {
+    --heat-0: #161b22;
+    --heat-1: #0e4429;
+    --heat-2: #006d32;
+    --heat-3: #26a641;
+    --heat-4: #39d353;
+    position: relative; padding: 0; overflow-x: auto;
+    background: #0d1117; border: 1px solid #30363d; border-radius: 12px;
+    box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(57, 211, 83, 0.04);
+    color: #c9d1d9;
+}
+.heatmap-wrap::before {
+    content: "●  ●  ●     git log --author=NIckys310 --since=\"1 year\"";
+    display: block; padding: 12px 18px; white-space: pre;
+    font-family: var(--mono); font-size: 12px; color: #8b949e;
+    background: #161b22; border-bottom: 1px solid #30363d;
+}
+.heatmap-wrap .heatmap { margin: 24px; min-width: 720px; }
+.heatmap-wrap .heatmap i { border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(27, 31, 35, 0.06); }
+.heatmap-wrap .heatmap .l4 { box-shadow: 0 0 8px rgba(57, 211, 83, 0.45); }
+.heatmap-wrap .heatmap-foot { margin: 0; padding: 12px 24px 16px; border-top: 1px solid #21262d; color: #8b949e; }
+.heatmap-wrap #heatmap-source { color: #39d353; }
+.heatmap-wrap #heatmap-source::before { content: "$ "; color: #8b949e; }
+.heatmap-wrap #heatmap-source::after { content: "_"; margin-left: 2px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Modo claro: tokens propios sobre el degradado rosa a blanco */
+[data-theme="light"] {
+    --surface: rgba(255, 255, 255, 0.7);
+    --surface-2: #f8e9ec;
+    --line: rgba(76, 16, 32, 0.12);
+    --line-strong: rgba(76, 16, 32, 0.24);
+    --text: #2c0913;
+    --muted: #6f4750;
+    --accent: #9b1b35;
+    --btn-bg: #9b1b35;
+    --btn-fg: #ffffff;
+    --btn-hover: #b8213d;
+}
