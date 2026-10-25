@@ -46,9 +46,9 @@
             <span class="logo-word" data-bind="brand">Nicoll</span><span class="logo-dot"></span>
         </a>
         <nav class="nav-links" aria-label="Principal">
+            <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
             <a href="#proyectos" data-i18n="nav.work">Proyectos</a>
             <a href="#servicios" data-i18n="nav.services">Servicios</a>
-            <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
             <a href="#actividad" data-i18n="nav.activity">Actividad</a>
         </nav>
         <div class="nav-actions">
@@ -69,9 +69,9 @@
     </header>
 
     <div class="mobile-menu" id="mobile-menu">
+        <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
         <a href="#proyectos" data-i18n="nav.work">Proyectos</a>
         <a href="#servicios" data-i18n="nav.services">Servicios</a>
-        <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
         <a href="#actividad" data-i18n="nav.activity">Actividad</a>
         <a href="#contacto" data-i18n="cta.contact">Hablemos</a>
     </div>
@@ -130,6 +130,31 @@
             </div>
         </section>
 
+        <!-- SOBRE MÍ -->
+        <section class="section about tone-deep" id="sobre-mi">
+            <div class="about-photo" data-anim="rise">
+                <img id="about-photo-img" alt="Nicoll Valentina" hidden>
+                <div class="about-photo-fallback" aria-hidden="true">
+                    <span data-bind="initial">N</span>
+                </div>
+            </div>
+            <div class="about-copy">
+                <p class="eyebrow" data-anim="up" data-i18n="about.eyebrow">Sobre mí</p>
+                <h2 class="section-title" data-anim="up" data-i18n="about.title">Creatividad con criterio de ingeniería.</h2>
+                <div id="about-text"></div>
+                <ul class="about-facts" data-anim="up">
+                    <li><i class="ph ph-map-pin"></i><span data-bind="location">Pasto, Colombia</span></li>
+                    <li><i class="ph ph-graduation-cap"></i><span data-i18n="about.study">Ingeniería de Software</span></li>
+                    <li><i class="ph ph-palette"></i><span data-i18n="about.design">Diseño gráfico</span></li>
+                    <li><i class="ph ph-translate"></i><span data-i18n="about.langs">Español nativo, inglés</span></li>
+                </ul>
+                <div class="toolbelt" data-anim="up">
+                    <span>TypeScript</span><span>JavaScript</span><span>Python</span><span>Java</span><span>Kotlin</span>
+                    <span>React / Next.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>Figma</span><span>Git</span>
+                </div>
+            </div>
+        </section>
+
         <!-- PROYECTOS -->
         <section class="section tone-black" id="proyectos">
             <div class="section-head">
@@ -157,31 +182,6 @@
         <section class="section process-section tone-burgundy">
             <h2 class="section-title" data-anim="up" data-i18n="process.title">Mi forma de trabajar</h2>
             <ol class="process" id="process"></ol>
-        </section>
-
-        <!-- SOBRE MÍ -->
-        <section class="section about tone-deep" id="sobre-mi">
-            <div class="about-photo" data-anim="rise">
-                <img id="about-photo-img" alt="Nicoll Valentina" hidden>
-                <div class="about-photo-fallback" aria-hidden="true">
-                    <span data-bind="initial">N</span>
-                </div>
-            </div>
-            <div class="about-copy">
-                <p class="eyebrow" data-anim="up" data-i18n="about.eyebrow">Sobre mí</p>
-                <h2 class="section-title" data-anim="up" data-i18n="about.title">Creatividad con criterio de ingeniería.</h2>
-                <div id="about-text"></div>
-                <ul class="about-facts" data-anim="up">
-                    <li><i class="ph ph-map-pin"></i><span data-bind="location">Pasto, Colombia</span></li>
-                    <li><i class="ph ph-graduation-cap"></i><span data-i18n="about.study">Ingeniería de Software</span></li>
-                    <li><i class="ph ph-palette"></i><span data-i18n="about.design">Diseño gráfico</span></li>
-                    <li><i class="ph ph-translate"></i><span data-i18n="about.langs">Español nativo, inglés</span></li>
-                </ul>
-                <div class="toolbelt" data-anim="up">
-                    <span>TypeScript</span><span>JavaScript</span><span>Python</span><span>Java</span><span>Kotlin</span>
-                    <span>React / Next.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>Figma</span><span>Git</span>
-                </div>
-            </div>
         </section>
 
         <!-- ACTIVIDAD GITHUB -->
