@@ -41,6 +41,7 @@
             'work.platform': 'Hecho para', 'work.where': 'Dónde está',
             'plat.web': 'Web', 'plat.mobile': 'Móvil', 'plat.desktop': 'Escritorio',
             'case.where': 'Dónde encontrarlo', 'panel.pPlatform': 'Hecho para', 'panel.pWhere': 'Dónde está (separado por coma)',
+            'work.realScreens': 'Capturas reales en Android', 'case.realScreens': 'Capturas reales de la app en un Pixel 6. Toca una pantalla para verla.',
             'work.open': 'Ver caso de estudio', 'work.live': 'En vivo', 'work.empty': 'Aún no hay proyectos. Añade uno desde el panel de control.',
             'services.title': 'Cómo puedo ayudarte',
             'services.lead': 'Desde el primer boceto hasta el despliegue. Puedes contratarme para una parte o para todo el producto.',
@@ -90,6 +91,7 @@
             'work.platform': 'Built for', 'work.where': 'Where it lives',
             'plat.web': 'Web', 'plat.mobile': 'Mobile', 'plat.desktop': 'Desktop',
             'case.where': 'Where to find it', 'panel.pPlatform': 'Built for', 'panel.pWhere': 'Where it lives (comma separated)',
+            'work.realScreens': 'Real Android screens', 'case.realScreens': 'Real screenshots of the app on a Pixel 6. Tap a screen to view it.',
             'work.open': 'View case study', 'work.live': 'Live', 'work.empty': 'No projects yet. Add one from the control panel.',
             'services.title': 'How I can help',
             'services.lead': 'From the first sketch to deployment. Hire me for one piece or for the whole product.',
@@ -256,8 +258,42 @@
         return `<div class="cover"><i class="ph ph-fill ${esc(m.icon || 'ph-cube')}"></i><span class="cover-label">${esc(project.title)}</span></div>`;
     }
 
+    // Celular con capturas reales de la app (para proyectos móviles)
+    function phoneHTML(project, screens, opts = {}) {
+        const imgs = screens.map((sc, i) =>
+            `<img src="${esc(safeUrl(sc.src))}" alt="${esc(project.title)}: ${esc(tr(sc.label))}" class="${i === 0 ? 'on' : ''}" loading="${opts.eager ? 'eager' : 'lazy'}">`).join('');
+        return `<div class="phone" data-phone data-i="0">
+            <div class="phone-screen">
+                <div class="phone-status" aria-hidden="true"><span>9:41</span><span class="phone-cam"></span><span><i class="ph ph-fill ph-wifi-high"></i><i class="ph ph-fill ph-cell-signal-full"></i><i class="ph ph-fill ph-battery-full"></i></span></div>
+                <div class="phone-shots">${imgs}</div>
+            </div>
+        </div>`;
+    }
+    function setPhoneScreen(phone, i) {
+        const shots = $$('.phone-shots img', phone);
+        if (!shots.length) return;
+        const n = ((i % shots.length) + shots.length) % shots.length;
+        shots.forEach((img, k) => img.classList.toggle('on', k === n));
+        phone.dataset.i = n;
+        const wrap = phone.closest('.phone-case');
+        if (wrap) $$('.phone-tabs button', wrap).forEach((b, k) => b.classList.toggle('active', k === n));
+    }
+    // Avanza solo las pantallas que están visibles en ese momento
+    setInterval(() => {
+        if (reducedMotion() || document.hidden) return;
+        $$('[data-phone]').forEach(ph => {
+            const r = ph.getBoundingClientRect();
+            if (r.bottom < 0 || r.top > innerHeight) return;
+            if (ph.closest('.phone-case') && ph.closest('.phone-case').dataset.paused) return;
+            setPhoneScreen(ph, Number(ph.dataset.i) + 1);
+        });
+    }, 2600);
+
     function cardMediaHTML(project) {
         const m = normalizeMedia(project);
+        if (m.phone && m.phone.length) {
+            return `<div class="work-media phone-stage">${phoneHTML(project, m.phone)}<span class="badge"><i class="ph ph-device-mobile"></i>${esc(i18n('work.realScreens'))}</span></div>`;
+        }
         let inner = '';
         if (m.poster) inner += `<img src="${esc(safeUrl(m.poster))}" alt="${esc(project.title)}" loading="lazy">`;
         else if (!m.video) inner += coverHTML(project, m);
@@ -471,7 +507,10 @@
         const images = (m.images || []).filter(Boolean);
 
         let media;
-        if (m.video) media = `<video src="${esc(safeUrl(m.video))}" ${m.poster ? `poster="${esc(safeUrl(m.poster))}"` : ''} controls autoplay muted loop playsinline></video>`;
+        if (m.phone && m.phone.length) media = `<div class="phone-case">${phoneHTML(p, m.phone, { eager: true })}
+                <div class="phone-tabs" role="tablist">${m.phone.map((sc, i) => `<button class="${i === 0 ? 'active' : ''}" data-screen="${i}"><span>${String(i + 1).padStart(2, '0')}</span>${esc(tr(sc.label))}</button>`).join('')}
+                <p class="phone-note"><i class="ph ph-device-mobile"></i>${esc(i18n('case.realScreens'))}</p></div></div>`;
+        else if (m.video) media = `<video src="${esc(safeUrl(m.video))}" ${m.poster ? `poster="${esc(safeUrl(m.poster))}"` : ''} controls autoplay muted loop playsinline></video>`;
         else if (images.length) media = `<img id="case-main-img" src="${esc(safeUrl(images[0]))}" alt="${esc(p.title)}">`;
         else if (m.poster) media = `<img src="${esc(safeUrl(m.poster))}" alt="${esc(p.title)}">`;
         else media = coverHTML(p, m);
@@ -502,7 +541,7 @@
         const highlights = (p.highlights || []).map(h => `<li><i class="ph ph-check-circle"></i><span>${esc(tr(h))}</span></li>`).join('');
 
         $('#modal-body').innerHTML = `
-            <div class="case-media">${media}</div>
+            <div class="case-media${m.phone && m.phone.length ? ' is-phone' : ''}">${media}</div>
             ${gallery}
             <div class="case-body">
                 <div class="case-top">
@@ -518,6 +557,11 @@
                 ${(p.tech || []).length ? `<div class="case-block"><h3><i class="ph ph-stack"></i>${esc(i18n('case.stack'))}</h3><div class="tags">${p.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
             </div>`;
 
+        $$('.phone-tabs button', modal).forEach(b => b.addEventListener('click', () => {
+            const pc = b.closest('.phone-case');
+            pc.dataset.paused = '1';
+            setPhoneScreen($('[data-phone]', pc), Number(b.dataset.screen));
+        }));
         $$('.case-gallery button', modal).forEach(b => b.addEventListener('click', () => {
             $('#case-main-img').src = b.dataset.img;
             $$('.case-gallery button', modal).forEach(x => x.classList.toggle('active', x === b));

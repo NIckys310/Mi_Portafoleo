@@ -247,7 +247,18 @@ window.PORTFOLIO_CONTENT = {
         { icon: "ph-github-logo", text: { es: "Código en GitHub", en: "Code on GitHub" } },
         { icon: "ph-cloud", text: { es: "Datos en la nube con Supabase", en: "Cloud data with Supabase" } }
       ],
-      media: { icon: "ph-hourglass-medium" },
+      // Capturas reales de la app en un Pixel 6 (se muestran dentro de un celular)
+      media: {
+        poster: "assets/media/tc-1-inicio.jpg",
+        phone: [
+          { src: "assets/media/tc-1-inicio.jpg", label: { es: "Mis cápsulas", en: "My capsules" } },
+          { src: "assets/media/tc-2-crear.jpg", label: { es: "Nueva cápsula", en: "New capsule" } },
+          { src: "assets/media/tc-3-detalle.jpg", label: { es: "Recuerdo abierto", en: "Opened memory" } },
+          { src: "assets/media/tc-4-linea.jpg", label: { es: "Línea de tiempo con IA", en: "AI timeline" } },
+          { src: "assets/media/tc-5-mapa.jpg", label: { es: "Mapa de recuerdos", en: "Memory map" } },
+          { src: "assets/media/tc-6-perfil.jpg", label: { es: "Perfil", en: "Profile" } }
+        ]
+      },
       live: "",
       repos: [{ label: "GitHub", url: "https://github.com/NIckys310/timeCapsul" }]
     },
