@@ -6,10 +6,6 @@
  *
  * - profile.whatsapp: número con indicativo, solo dígitos.
  * - profile.now: la línea "Ahora mismo estoy...".
- * - plans: precios de referencia en USD; cámbialos cuando quieras.
- * - testimonials: agrega citas REALES con este formato:
- *     { "quote": { "es": "...", "en": "..." }, "name": "Nombre", "role": { "es": "...", "en": "..." } }
- *   La sección se oculta sola mientras esté vacía.
  *
  * Para cambios desde la página: Panel de control > Exportar content.js
  */
@@ -1144,117 +1140,5 @@ window.PORTFOLIO_CONTENT = {
       },
       "size": "wide"
     }
-  ],
-  "plans": [
-    {
-      "name": {
-        "es": "Landing page",
-        "en": "Landing page"
-      },
-      "price": {
-        "es": "Desde US$150",
-        "en": "From US$150"
-      },
-      "time": {
-        "es": "5 a 7 días",
-        "en": "5 to 7 days"
-      },
-      "desc": {
-        "es": "Para presentar tu marca, producto o servicio y conseguir contactos.",
-        "en": "To present your brand, product or service and get leads."
-      },
-      "features": [
-        {
-          "es": "Diseño a medida en Figma",
-          "en": "Custom Figma design"
-        },
-        {
-          "es": "Responsive y en dos idiomas",
-          "en": "Responsive and bilingual"
-        },
-        {
-          "es": "Animaciones y SEO básico",
-          "en": "Animations and basic SEO"
-        },
-        {
-          "es": "Publicación en Vercel",
-          "en": "Deployment on Vercel"
-        }
-      ]
-    },
-    {
-      "name": {
-        "es": "Web app",
-        "en": "Web app"
-      },
-      "price": {
-        "es": "Desde US$600",
-        "en": "From US$600"
-      },
-      "time": {
-        "es": "3 a 6 semanas",
-        "en": "3 to 6 weeks"
-      },
-      "featured": true,
-      "desc": {
-        "es": "Paneles, sistemas con login y herramientas internas para tu negocio.",
-        "en": "Dashboards, systems with login and internal tools for your business."
-      },
-      "features": [
-        {
-          "es": "Diseño UI/UX del flujo completo",
-          "en": "Full-flow UI/UX design"
-        },
-        {
-          "es": "Login, roles y base de datos",
-          "en": "Login, roles and database"
-        },
-        {
-          "es": "API y despliegue",
-          "en": "API and deployment"
-        },
-        {
-          "es": "Documentación y entrega del código",
-          "en": "Documentation and code handover"
-        }
-      ]
-    },
-    {
-      "name": {
-        "es": "App móvil",
-        "en": "Mobile app"
-      },
-      "price": {
-        "es": "Desde US$900",
-        "en": "From US$900"
-      },
-      "time": {
-        "es": "4 a 8 semanas",
-        "en": "4 to 8 weeks"
-      },
-      "desc": {
-        "es": "App Android nativa conectada a la nube, lista para instalar.",
-        "en": "A native, cloud-connected Android app ready to install."
-      },
-      "features": [
-        {
-          "es": "Diseño de pantallas móviles",
-          "en": "Mobile screen design"
-        },
-        {
-          "es": "Kotlin + Jetpack Compose",
-          "en": "Kotlin + Jetpack Compose"
-        },
-        {
-          "es": "Cuentas, archivos y notificaciones",
-          "en": "Accounts, files and notifications"
-        },
-        {
-          "es": "APK firmado para instalar",
-          "en": "Signed APK to install"
-        }
-      ]
-    }
-  ],
-  "testimonials": []
+  ]
 };

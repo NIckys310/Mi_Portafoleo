@@ -239,7 +239,7 @@
     function paletteEntries() {
         const sections = [
             ['sobre-mi', 'sec.about', 'ph-user'], ['proyectos', 'sec.work', 'ph-squares-four'], ['diseno', 'sec.design', 'ph-pen-nib'],
-            ['servicios', 'sec.services', 'ph-briefcase'], ['planes', 'sec.plans', 'ph-tag'], ['actividad', 'sec.activity', 'ph-git-branch'], ['contacto', 'sec.contact', 'ph-envelope-simple']
+            ['servicios', 'sec.services', 'ph-briefcase'], ['actividad', 'sec.activity', 'ph-git-branch'], ['contacto', 'sec.contact', 'ph-envelope-simple']
         ].filter(s => { const el = document.getElementById(s[0]); return el && !el.hidden; })
          .map(([id, key, icon]) => ({ group: 'palette.sections', icon, label: i18n(key), run: () => go(id) }));
         const projects = (content().projects || []).map(p => ({ group: 'palette.projects', icon: 'ph-folder-open', label: p.title, hint: tr(p.category), run: () => api.openProject(p.id) }));
@@ -311,7 +311,7 @@
         help: () => print([
             ['about', T('quién soy', 'who I am')], ['now', T('en qué estoy trabajando', 'what I am working on')],
             ['projects', T('lista de proyectos', 'list of projects')], ['open &lt;id&gt;', T('abre un caso de estudio', 'opens a case study')],
-            ['skills', T('tecnologías', 'tech stack')], ['plans', T('planes y precios', 'plans and pricing')],
+            ['skills', T('tecnologías', 'tech stack')],
             ['contact', T('cómo contactarme', 'how to reach me')], ['cv', T('descarga mi CV', 'downloads my CV')],
             ['github', T('abre mi GitHub', 'opens my GitHub')], ['theme', T('cambia el tema', 'toggles the theme')],
             ['lang', T('cambia el idioma', 'switches language')], ['clear', T('limpia la pantalla', 'clears the screen')], ['exit', T('cierra la terminal', 'closes the terminal')]
@@ -332,7 +332,6 @@
             const all = [...new Set((content().projects || []).flatMap(p => p.tech || []))];
             print(all.map(t => `<span class="t-tag">${esc(t)}</span>`).join(' '));
         },
-        plans: () => print((content().plans || []).map(pl => `<span class="t-hl">${esc(tr(pl.name))}</span> ${esc(tr(pl.price))} <span class="t-dim">· ${esc(tr(pl.time))}</span>`).join('<br>')),
         contact: () => {
             const p = content().profile;
             print([`email     ${esc(p.email)}`, waNumber() ? `whatsapp  +${esc(waNumber())}` : '', `github    github.com/${esc(p.github)}`, p.linkedin ? `linkedin  ${esc(p.linkedin.replace(/^https?:\/\/(www\.)?/, ''))}` : '']
