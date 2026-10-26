@@ -158,6 +158,7 @@
         renderProcess();
         renderActivityText();
         syncPanelControls();
+        document.dispatchEvent(new CustomEvent('portfolio:render'));
         observeReveals();
     }
 
@@ -490,7 +491,7 @@
                 links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`));
             });
         }, { rootMargin: '-45% 0px -50% 0px' });
-        ['proyectos', 'servicios', 'sobre-mi', 'actividad'].forEach(id => { const s = document.getElementById(id); if (s) obs.observe(s); });
+        ['sobre-mi', 'proyectos', 'diseno', 'servicios', 'planes', 'actividad', 'contacto'].forEach(id => { const s = document.getElementById(id); if (s) obs.observe(s); });
     }
 
     // ----------------------------------------------------
@@ -557,6 +558,7 @@
                 ${(p.tech || []).length ? `<div class="case-block"><h3><i class="ph ph-stack"></i>${esc(i18n('case.stack'))}</h3><div class="tags">${p.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
             </div>`;
 
+        document.dispatchEvent(new CustomEvent('portfolio:project-open', { detail: p }));
         $$('.phone-tabs button', modal).forEach(b => b.addEventListener('click', () => {
             const pc = b.closest('.phone-case');
             pc.dataset.paused = '1';
@@ -739,6 +741,8 @@
         f.headline_es.value = (p.headline && p.headline.es) || '';
         f.headline_en.value = (p.headline && p.headline.en) || '';
         f.photo.value = p.photo || '';
+        f.now_es.value = (p.now && p.now.es) || '';
+        f.now_en.value = (p.now && p.now.en) || '';
     }
     profileForm.addEventListener('submit', e => {
         e.preventDefault();
@@ -752,6 +756,7 @@
         p.linkedin = f.linkedin.value.trim();
         p.headline = { es: f.headline_es.value.trim() || p.headline.es, en: f.headline_en.value.trim() || p.headline.en };
         p.photo = f.photo.value.trim();
+        p.now = { es: f.now_es.value.trim(), en: f.now_en.value.trim() };
         persist();
         if (githubChanged) loadGithub();
         toast(i18n('panel.saved'));
@@ -909,6 +914,14 @@
         };
         requestAnimationFrame(tick);
     }
+
+    // API mínima para js/extras.js (paleta, terminal, secciones nuevas)
+    window.PortfolioAPI = {
+        get content() { return content; },
+        get prefs() { return prefs; },
+        i18n, tr, esc, safeUrl, toast, setPref, openProject, renderAll, reducedMotion,
+        addStrings(strings) { Object.assign(UI.es, strings.es); Object.assign(UI.en, strings.en); }
+    };
 
     // ----------------------------------------------------
     // INICIO

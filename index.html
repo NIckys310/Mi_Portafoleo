@@ -49,11 +49,15 @@
             <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
             <a href="#proyectos" data-i18n="nav.work">Proyectos</a>
             <a href="#servicios" data-i18n="nav.services">Servicios</a>
+            <a href="#planes" data-i18n="nav.plans">Precios</a>
             <a href="#actividad" data-i18n="nav.activity">Actividad</a>
         </nav>
         <div class="nav-actions">
             <button class="chip-btn lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">
                 <span data-lang="es">ES</span><span data-lang="en">EN</span>
+            </button>
+            <button class="kbd-btn" id="palette-open" aria-label="Buscar (Ctrl+K)" title="Ctrl+K">
+                <i class="ph ph-magnifying-glass"></i><kbd>Ctrl K</kbd>
             </button>
             <button class="icon-btn" id="theme-toggle" aria-label="Cambiar tema">
                 <i class="ph ph-moon theme-icon-dark"></i><i class="ph ph-sun theme-icon-light"></i>
@@ -72,6 +76,7 @@
         <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
         <a href="#proyectos" data-i18n="nav.work">Proyectos</a>
         <a href="#servicios" data-i18n="nav.services">Servicios</a>
+        <a href="#planes" data-i18n="nav.plans">Precios</a>
         <a href="#actividad" data-i18n="nav.activity">Actividad</a>
         <a href="#contacto" data-i18n="cta.contact">Hablemos</a>
     </div>
@@ -139,6 +144,11 @@
                 </div>
             </div>
             <div class="about-copy">
+                <p class="now-line" data-anim="up" id="now-line">
+                    <span class="now-dot" aria-hidden="true"></span>
+                    <strong data-i18n="about.now">Ahora mismo</strong>
+                    <span data-bind="now"></span>
+                </p>
                 <p class="eyebrow" data-anim="up" data-i18n="about.eyebrow">Sobre mí</p>
                 <h2 class="section-title" data-anim="up" data-i18n="about.title">Creatividad con criterio de ingeniería.</h2>
                 <div id="about-text"></div>
@@ -148,6 +158,10 @@
                     <li><i class="ph ph-palette"></i><span data-i18n="about.design">Diseño gráfico</span></li>
                     <li><i class="ph ph-translate"></i><span data-i18n="about.langs">Español nativo, inglés</span></li>
                 </ul>
+                <div class="about-ctas" data-anim="up">
+                    <a class="btn btn-primary cv-link" download><i class="ph ph-file-arrow-down"></i><span data-i18n="cta.cv">Descargar CV</span></a>
+                    <a href="#proyectos" class="btn btn-ghost" data-i18n="cta.work">Ver proyectos</a>
+                </div>
                 <div class="toolbelt" data-anim="up">
                     <span>TypeScript</span><span>JavaScript</span><span>Python</span><span>Java</span><span>Kotlin</span>
                     <span>React / Next.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>Figma</span><span>Git</span>
@@ -162,6 +176,15 @@
                 <p class="section-lead" data-anim="up" style="--d:.08s" data-i18n="work.lead">Productos reales, de la idea al código. Abre cada uno para ver el problema, la solución y cómo está construido.</p>
             </div>
             <div class="work-grid" id="work-grid"></div>
+        </section>
+
+        <!-- DISEÑO VISUAL -->
+        <section class="section design-section tone-deep" id="diseno">
+            <div class="section-head">
+                <h2 class="section-title" data-anim="up" data-i18n="design.title">Diseño visual</h2>
+                <p class="section-lead" data-anim="up" style="--d:.08s" data-i18n="design.lead">Identidad, íconos e interfaces que diseñé para mis propios productos.</p>
+            </div>
+            <div class="design-grid" id="design-grid"></div>
         </section>
 
         <!-- Patrones (marquee único) -->
@@ -184,6 +207,15 @@
             <ol class="process" id="process"></ol>
         </section>
 
+        <!-- PLANES Y PRECIOS -->
+        <section class="section plans-section tone-deep" id="planes">
+            <div class="section-head">
+                <h2 class="section-title" data-anim="up" data-i18n="plans.title">Planes y precios</h2>
+                <p class="section-lead" data-anim="up" style="--d:.08s" data-i18n="plans.lead">Precios de referencia en dólares. Cada proyecto se cotiza según su alcance, sin compromiso.</p>
+            </div>
+            <div class="plans" id="plans"></div>
+        </section>
+
         <!-- ACTIVIDAD GITHUB -->
         <section class="section activity tone-wine" id="actividad">
             <div class="activity-head">
@@ -204,6 +236,12 @@
             </div>
         </section>
 
+        <!-- TESTIMONIOS -->
+        <section class="section testimonials-section tone-deep" id="testimonios" hidden>
+            <h2 class="section-title" data-anim="up" data-i18n="testimonials.title">Lo que dicen de mi trabajo</h2>
+            <div class="testimonials" id="testimonials"></div>
+        </section>
+
         <!-- CONTACTO -->
         <section class="contact tone-contact" id="contacto">
             <div class="contact-glow" aria-hidden="true"></div>
@@ -221,7 +259,43 @@
                 <a id="contact-whatsapp" target="_blank" rel="noopener" hidden><i class="ph ph-whatsapp-logo"></i>WhatsApp</a>
                 <a id="contact-github" target="_blank" rel="noopener"><i class="ph ph-github-logo"></i>GitHub</a>
                 <a id="contact-linkedin" target="_blank" rel="noopener" hidden><i class="ph ph-linkedin-logo"></i>LinkedIn</a>
+                <a class="cv-link" download><i class="ph ph-file-arrow-down"></i>CV</a>
             </div>
+            <form class="contact-form" id="contact-form" data-anim="up" novalidate>
+                <h3 data-i18n="form.title">Cuéntame de tu proyecto</h3>
+                <div class="form-cols">
+                    <label class="field"><span class="field-label" data-i18n="form.name">Tu nombre</span><input name="name" autocomplete="name" required></label>
+                    <label class="field"><span class="field-label" data-i18n="form.type">Tipo de proyecto</span>
+                        <select name="type" required>
+                            <option value="" data-i18n="form.choose">Elige una opción</option>
+                            <option data-i18n="form.tLanding">Landing page</option>
+                            <option data-i18n="form.tWeb">Web app</option>
+                            <option data-i18n="form.tMobile">App móvil</option>
+                            <option data-i18n="form.tDesign">Diseño UI/UX</option>
+                            <option data-i18n="form.tAI">Integración con IA</option>
+                            <option data-i18n="form.tOther">Otro</option>
+                        </select>
+                    </label>
+                    <label class="field"><span class="field-label" data-i18n="form.budget">Presupuesto aproximado</span>
+                        <select name="budget">
+                            <option value="" data-i18n="form.choose">Elige una opción</option>
+                            <option>US$150 - 500</option>
+                            <option>US$500 - 1.500</option>
+                            <option>US$1.500 - 3.000</option>
+                            <option data-i18n="form.bMore">Más de US$3.000</option>
+                            <option data-i18n="form.bUnknown">Aún no lo sé</option>
+                        </select>
+                    </label>
+                    <label class="field"><span class="field-label" data-i18n="form.when">¿Para cuándo?</span><input name="when" data-i18n-ph="form.whenPh" placeholder="Ej. en un mes"></label>
+                </div>
+                <label class="field"><span class="field-label" data-i18n="form.message">Mensaje</span><textarea name="message" rows="4" required data-i18n-ph="form.messagePh" placeholder="¿Qué quieres construir?"></textarea></label>
+                <p class="form-error" id="form-error" role="alert" hidden></p>
+                <div class="form-send">
+                    <button class="btn btn-primary" type="submit" data-channel="whatsapp"><i class="ph ph-whatsapp-logo"></i><span data-i18n="form.sendWa">Enviar por WhatsApp</span></button>
+                    <button class="btn btn-ghost" type="submit" data-channel="email"><i class="ph ph-envelope-simple"></i><span data-i18n="form.sendMail">Enviar por correo</span></button>
+                </div>
+                <small class="form-note" data-i18n="form.note">Se abre tu WhatsApp o tu correo con el mensaje listo. No se guarda nada en este sitio.</small>
+            </form>
         </section>
     </main>
 
@@ -302,6 +376,8 @@
                         <label class="field"><span class="field-label">LinkedIn</span><input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/tu-usuario"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.headlineEs">Titular (español)</span><input name="headline_es"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.headlineEn">Titular (inglés)</span><input name="headline_en"></label>
+                        <label class="field"><span class="field-label" data-i18n="panel.nowEs">Ahora mismo (español)</span><input name="now_es"></label>
+                        <label class="field"><span class="field-label" data-i18n="panel.nowEn">Ahora mismo (inglés)</span><input name="now_en"></label>
                         <label class="field"><span class="field-label" data-i18n="panel.photo">Foto (ruta o URL)</span><input name="photo" placeholder="assets/media/foto.jpg"></label>
                         <button class="btn btn-primary" type="submit" data-i18n="panel.save">Guardar perfil</button>
                     </form>
@@ -346,10 +422,35 @@
         </div>
     </aside>
 
+    <!-- PALETA DE COMANDOS (Ctrl+K) -->
+    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Paleta de comandos" hidden>
+        <div class="palette-backdrop" data-palette-close></div>
+        <div class="palette-box">
+            <div class="palette-input">
+                <i class="ph ph-magnifying-glass"></i>
+                <input id="palette-input" autocomplete="off" spellcheck="false" data-i18n-ph="palette.ph" placeholder="Busca una sección, proyecto o acción...">
+                <kbd>Esc</kbd>
+            </div>
+            <ul class="palette-list" id="palette-list" role="listbox"></ul>
+            <div class="palette-foot"><span><kbd>↑</kbd><kbd>↓</kbd> <span data-i18n="palette.move">moverse</span></span><span><kbd>Enter</kbd> <span data-i18n="palette.open">abrir</span></span><span><kbd>`</kbd> <span data-i18n="palette.terminal">terminal</span></span></div>
+        </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="terminal" id="terminal" role="dialog" aria-modal="true" aria-label="Terminal" hidden>
+        <div class="terminal-backdrop" data-terminal-close></div>
+        <div class="terminal-box">
+            <div class="terminal-bar"><span class="dots"><i></i><i></i><i></i></span><span>nicoll@portfolio: ~</span><button class="terminal-x" data-terminal-close aria-label="Cerrar"><i class="ph ph-x"></i></button></div>
+            <div class="terminal-out" id="terminal-out" aria-live="polite"></div>
+            <form class="terminal-line" id="terminal-form"><span class="prompt">nicoll@portfolio:~$</span><input id="terminal-input" autocomplete="off" spellcheck="false" aria-label="Comando"></form>
+        </div>
+    </div>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="js/content.js"></script>
     <script src="js/github-snapshot.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/extras.js"></script>
 </body>
 </html>
