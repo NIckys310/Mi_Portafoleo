@@ -419,7 +419,7 @@ main { position: relative; }
    ========================================================== */
 .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
 .about-photo { position: sticky; top: 110px; aspect-ratio: 4 / 5; border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
-.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .about-photo-fallback {
     position: absolute; inset: 0; display: grid; place-items: center;
     background:
